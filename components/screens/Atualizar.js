@@ -10,33 +10,37 @@ import {
   Text
 } from 'react-native-elements'
 import {
+  atualizar,
   cadastrar,
+  listar,
 } from '../../services/EnderecosService'
 import estilos from '../../styles'
 
-const Enderecos = (props) => {
+const Atualizar = (props) => {
   //states usados para armazenar o valor dos inputs
   const [nome, setNome] = useState('')
   const [avatar, setAvatar] = useState('')
   const [endereco, setEndereco] = useState('')
   const [horarios, setHorarios] = useState('')
 
-  const novoEndereco = () => {
-    const obj = {nome, avatar, endereco, horarios}
-    cadastrar(nome, obj, (error) => {
-      if (error) {
-        alert('Não foi possível cadastrar o novo endereço')
-      }
-      else {
-        alert('Novo endereço cadastrado com sucesso')
-      }
+  const [enderecos, setEnderecos] = useState('')
+  const [index, setIndex] = useState('')
 
+  const atualizarEndereco = () => {
+    atualizar(nome, avatar, endereco, horarios)
+    .then((res) => {
+      console.log(res)
+      alert('Atualizado com sucesso!')
+      props.navigation.navigate('Lista')
+    })
+    .catch((error) => {
+      alert(error)
     })
   }
 
   return (
       <View style={estilos.screen}>
-        <Text h1 h1Style={estilos.title} > Cadastrar novo Endereço </Text>
+        <Text h1 h1Style={estilos.title} > Atualizar Endereço </Text>
 
         <Input
           label="Nome do Estabelecimento"
@@ -57,10 +61,10 @@ const Enderecos = (props) => {
           value={horarios} />
         <Button
           buttonStyle={estilos.confirmButton}
-          onPress={() => novoEndereco()}
+          onPress={() => atualizarEndereco()}
           title="Entrar" />
       </View>
   )
 }
 
-export default Enderecos;
+export default Atualizar;

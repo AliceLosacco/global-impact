@@ -1,43 +1,54 @@
 import React from "react";
-import { View } from "react-native";
+
+import Lista from "./Lista";
+import Enderecos from "./Enderecos";
+import Atualizar from "./Atualizar";
+
+import list from "../../services/list.png";
+
 import {
-  Header,
-  Tab
-} from 'react-native-elements'
+  Image
+} from 'react-native'
+
+import estilos from "../../styles";
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { listar } from "../../services/EnderecosService";
 
 const NavBar = (props) => {
 
+  const Tab = createBottomTabNavigator();
+
   return (
-    <View>
-      <Tab >
-  <Tab.Item title="recent" />
-  <Tab.Item title="favorite" />
-  <Tab.Item title="cart" />
-</Tab>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarInactiveTintColor: '#fff3d9',
+        tabBarActiveTintColor: '#468F44',
+        tabBarStyle: estilos.tab
+      })}>
+      <Tab.Screen
+        name="Lista"
+        component={Lista}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Lista',
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <Image source={list}  />
+            ) : (
+              <Image source={list} />
+            ),
+        }} />
+      <Tab.Screen
+        name="Atualizar"
+        component={Atualizar}
+        options={{ headerShown: false }} />
+      <Tab.Screen
+        name="Novo"
+        component={Enderecos}
+        options={{ headerShown: false }} />
 
- <TabView  >
-  <TabView.Item style={{ backgroundColor: 'red', width: '100%' }}>
-    <Text h1>Recent</Text>
-  </TabView.Item>
-  <TabView.Item style={{ backgroundColor: 'blue', width: '100%' }}>
-    <Text h1>Favorite</Text>
-  </TabView.Item>
-  <TabView.Item style={{ backgroundColor: 'green', width: '100%' }}>
-    <Text h1>Cart</Text>
-  </TabView.Item>
-</TabView>
-    </View>
-/*     <Header
-      backgroundColor='#F56A00'
-      leftComponent={{ icon: 'menu', color: '#fff', iconStyle: { color: '#fff' } }}
-      centerComponent={{ text: 'Food Cycle', style: { color: '#fff' } }}
-      rightComponent={{ 
-        icon: 'exit-to-app', 
-        color: '#fff',  
-        onPress: () => this.props.navigation.navigate('Login')
-      }}
-    /> */
-
+    </Tab.Navigator>
   )
 }
 

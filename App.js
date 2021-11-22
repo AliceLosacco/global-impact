@@ -3,9 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Login from "./components/screens/Login";
-import Cadastro from "./components/screens/Cadastro";
 import Lista from "./components/screens/Lista";
 import Enderecos from "./components/screens/Enderecos"
+import NavBar from "./components/screens/NavBar";
 
 
 const Stack = createNativeStackNavigator()
@@ -31,9 +31,9 @@ const App = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Cadastro"
-          component={Cadastro}
-          options={header}
+          name="NavBar"
+          component={NavBar}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="Lista"

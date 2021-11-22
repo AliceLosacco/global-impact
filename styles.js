@@ -35,6 +35,9 @@ const estilos = StyleSheet.create({
         backgroundColor: '#fff3d9',
         paddingTop: 22
     },
+    tab: {
+        backgroundColor: '#F56A00'
+    },
     text: {
         fontSize: 18
     },

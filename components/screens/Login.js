@@ -40,17 +40,8 @@ const Login = (props) => {
           value={senha} />
         <Button
           buttonStyle={estilos.confirmButton}
-          onPress={() => props.navigation.navigate('Lista', {
-            nome: '',
-            avatar: '',
-            endereco: '',
-            horarios: ''
-          })}
+          onPress={() => props.navigation.navigate('NavBar')}
           title="Entrar" />
-        <Button
-          buttonStyle={estilos.confirmButton}
-          onPress={() => props.navigation.navigate('Cadastro')}
-          title="Cadastro" />
       </View>
     </View>
   )
